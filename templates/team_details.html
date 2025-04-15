@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Team Details - F1 Database</title>
+    <link rel="stylesheet" href="{{ request.url_for('static', path='index.css') }}">
+    <script type="module" src="{{ request.url_for('static', path='firebase-login.js') }}" defer></script>
+  </head>
+  <body>
+    <div id="team-details-container" class="container">
+      {% if team %}
+        <h2 class="team-name">{{ team.team_name }}</h2>
+        <p class="team-info">Year Founded: <span class="value">{{ team.year_founded }}</span></p>
+        <p class="team-info">Pole Positions: <span class="value">{{ team.pole_positions }}</span></p>
+        <p class="team-info">Race Wins: <span class="value">{{ team.race_wins }}</span></p>
+        <p class="team-info">Constructor Titles: <span class="value">{{ team.constructor_titles }}</span></p>
+        <p class="team-info">Finishing Position: <span class="value">{{ team.finishing_position }}</span></p>
+        
+        {% if logged_in %}
+          <div class="team-actions">
+            <a href="{{ request.url_for('edit_team_get', team_id=team.id) }}" class="action-link">Edit</a> |
+            <a href="{{ request.url_for('delete_team', team_id=team.id) }}" class="action-link">Delete</a>
+          </div>
+          <div id="cancel-container">
+            <a href="{{ request.url_for('root') }}">
+              <button type="button" class="cancel-btn">Cancel</button>
+            </a>
+          </div>
+        {% endif %}
+      {% else %}
+        <p class="error">No team found.</p>
+      {% endif %}
+    </div>
+  </body>
+</html>

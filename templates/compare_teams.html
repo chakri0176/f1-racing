@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Compare Teams - F1 Database</title>
+    <link rel="stylesheet" href="{{ request.url_for('static', path='index.css') }}">
+    <script type="module" src="{{ request.url_for('static', path='firebase-login.js') }}" defer></script>
+  </head>
+  <body>
+    <div id="compare-teams-container" class="container">
+      <h2 class="section-title">Compare Two Teams</h2>
+      <!-- Use the appropriate route name for compare teams -->
+      <form id="compare-teams-form" method="POST" action="{{ request.url_for('compare_teams_get') }}">
+        <label for="team1">Team 1 Name:</label>
+        <input type="text" id="team1" name="team1">
+        <label for="team2">Team 2 Name:</label>
+        <input type="text" id="team2" name="team2">
+        <button type="submit">Compare</button>
+      </form>
+
+      {% if team1 and team2 %}
+        <hr class="divider">
+        <h3 class="comparison-title">{{ team1.team_name }} vs {{ team2.team_name }}</h3>
+        <table id="comparison-table" border="1">
+          <tr>
+            <th>Stat</th>
+            <th>{{ team1.team_name }}</th>
+            <th>{{ team2.team_name }}</th>
+          </tr>
+          <!-- Year Founded (lower is better) -->
+          <tr>
+            <td>Year Founded</td>
+            {% if team1.year_founded < team2.year_founded %}
+              <td style="background-color: green;">{{ team1.year_founded }}</td>
+              <td>{{ team2.year_founded }}</td>
+            {% elif team2.year_founded < team1.year_founded %}
+              <td>{{ team1.year_founded }}</td>
+              <td style="background-color: green;">{{ team2.year_founded }}</td>
+            {% else %}
+              <td>{{ team1.year_founded }}</td>
+              <td>{{ team2.year_founded }}</td>
+            {% endif %}
+          </tr>
+          <!-- Finishing Position (lower is better) -->
+          <tr>
+            <td>Finishing Position</td>
+            {% if team1.finishing_position < team2.finishing_position %}
+              <td style="background-color: green;">{{ team1.finishing_position }}</td>
+              <td>{{ team2.finishing_position }}</td>
+            {% elif team2.finishing_position < team1.finishing_position %}
+              <td>{{ team1.finishing_position }}</td>
+              <td style="background-color: green;">{{ team2.finishing_position }}</td>
+            {% else %}
+              <td>{{ team1.finishing_position }}</td>
+              <td>{{ team2.finishing_position }}</td>
+            {% endif %}
+          </tr>
+          <!-- Total Race Wins (higher is better) -->
+          <tr>
+            <td>Total Race Wins</td>
+            {% if team1.race_wins > team2.race_wins %}
+              <td style="background-color: green;">{{ team1.race_wins }}</td>
+              <td>{{ team2.race_wins }}</td>
+            {% elif team2.race_wins > team1.race_wins %}
+              <td>{{ team1.race_wins }}</td>
+              <td style="background-color: green;">{{ team2.race_wins }}</td>
+            {% else %}
+              <td>{{ team1.race_wins }}</td>
+              <td>{{ team2.race_wins }}</td>
+            {% endif %}
+          </tr>
+          <!-- Pole Positions (higher is better) -->
+          <tr>
+            <td>Pole Positions</td>
+            {% if team1.pole_positions > team2.pole_positions %}
+              <td style="background-color: green;">{{ team1.pole_positions }}</td>
+              <td>{{ team2.pole_positions }}</td>
+            {% elif team2.pole_positions > team1.pole_positions %}
+              <td>{{ team1.pole_positions }}</td>
+              <td style="background-color: green;">{{ team2.pole_positions }}</td>
+            {% else %}
+              <td>{{ team1.pole_positions }}</td>
+              <td>{{ team2.pole_positions }}</td>
+            {% endif %}
+          </tr>
+          <!-- Constructor Titles (higher is better) -->
+          <tr>
+            <td>Constructor Titles</td>
+            {% if team1.constructor_titles > team2.constructor_titles %}
+              <td style="background-color: green;">{{ team1.constructor_titles }}</td>
+              <td>{{ team2.constructor_titles }}</td>
+            {% elif team2.constructor_titles > team1.constructor_titles %}
+              <td>{{ team1.constructor_titles }}</td>
+              <td style="background-color: green;">{{ team2.constructor_titles }}</td>
+            {% else %}
+              <td>{{ team1.constructor_titles }}</td>
+              <td>{{ team2.constructor_titles }}</td>
+            {% endif %}
+          </tr>
+        </table>
+      {% elif team1 is not none or team2 is not none %}
+        <p class="error-message">One or both teams were not found. Check spelling and try again.</p>
+      {% endif %}
+
+      <div class="cancel-button">
+        <!-- Updated cancel link -->
+        <a href="{{ request.url_for('root') }}">
+          <button type="button">Cancel</button>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

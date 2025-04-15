@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Compare Drivers - F1 Database</title>
+    <link rel="stylesheet" href="{{ request.url_for('static', path='index.css') }}">
+    <script type="module" src="{{ request.url_for('static', path='firebase-login.js') }}" defer></script>
+  </head>
+  <body>
+    <div id="compare-drivers-container" class="container">
+      <h2 class="section-title">Compare Two Drivers (By Name)</h2>
+      <!-- Use the correct route name in the form action; here we use the GET route name,
+           knowing that the POST request to the same URL will be handled appropriately. -->
+      <form id="compare-drivers-form" method="POST" action="{{ request.url_for('compare_drivers_get') }}">
+        <label for="driver1">Driver 1 Name:</label>
+        <input type="text" id="driver1" name="driver1">
+        <label for="driver2">Driver 2 Name:</label>
+        <input type="text" id="driver2" name="driver2">
+        <button type="submit">Compare</button>
+      </form>
+
+      {% if driver1 and driver2 %}
+        <hr class="divider">
+        <h3 class="comparison-title">{{ driver1.name }} vs {{ driver2.name }}</h3>
+        <table id="comparison-table" border="1">
+          <tr>
+            <th>Stat</th>
+            <th>{{ driver1.name }}</th>
+            <th>{{ driver2.name }}</th>
+          </tr>
+          <!-- Age (no highlight) -->
+          <tr>
+            <td>Age</td>
+            {% if driver1.age < driver2.age %}
+              <td style="background-color: green;">{{ driver1.age }}</td>
+              <td>{{ driver2.age }}</td>
+            {%else%}
+              <td></td>
+              <td style="background-color: green;">{{ driver2.age }}</td>
+            {% endif %}
+            </tr>
+          <!-- Race Wins (higher is better) -->
+          <tr>
+            <td>Race Wins</td>
+            {% if driver1.race_wins > driver2.race_wins %}
+              <td style="background-color: green;">{{ driver1.race_wins }}</td>
+              <td>{{ driver2.race_wins }}</td>
+            {% elif driver2.race_wins > driver1.race_wins %}
+              <td>{{ driver1.race_wins }}</td>
+              <td style="background-color: green;">{{ driver2.race_wins }}</td>
+            {% else %}
+              <td>{{ driver1.race_wins }}</td>
+              <td>{{ driver2.race_wins }}</td>
+            {% endif %}
+          </tr>
+          <!-- Pole Positions -->
+          <tr>
+            <td>Pole Positions</td>
+            {% if driver1.pole_positions > driver2.pole_positions %}
+              <td style="background-color: green;">{{ driver1.pole_positions }}</td>
+              <td>{{ driver2.pole_positions }}</td>
+            {% elif driver2.pole_positions > driver1.pole_positions %}
+              <td>{{ driver1.pole_positions }}</td>
+              <td style="background-color: green;">{{ driver2.pole_positions }}</td>
+            {% else %}
+              <td>{{ driver1.pole_positions }}</td>
+              <td>{{ driver2.pole_positions }}</td>
+            {% endif %}
+          </tr>
+          <!-- Total Points -->
+          <tr>
+            <td>Total Points</td>
+            {% if driver1.total_points > driver2.total_points %}
+              <td style="background-color: green;">{{ driver1.total_points }}</td>
+              <td>{{ driver2.total_points }}</td>
+            {% elif driver2.total_points > driver1.total_points %}
+              <td>{{ driver1.total_points }}</td>
+              <td style="background-color: green;">{{ driver2.total_points }}</td>
+            {% else %}
+              <td>{{ driver1.total_points }}</td>
+              <td>{{ driver2.total_points }}</td>
+            {% endif %}
+          </tr>
+          <!-- World Titles -->
+          <tr>
+            <td>World Titles</td>
+            {% if driver1.world_titles > driver2.world_titles %}
+              <td style="background-color: green;">{{ driver1.world_titles }}</td>
+              <td>{{ driver2.world_titles }}</td>
+            {% elif driver2.world_titles > driver1.world_titles %}
+              <td>{{ driver1.world_titles }}</td>
+              <td style="background-color: green;">{{ driver2.world_titles }}</td>
+            {% else %}
+              <td>{{ driver1.world_titles }}</td>
+              <td>{{ driver2.world_titles }}</td>
+            {% endif %}
+          </tr>
+          <!-- Fastest Laps -->
+          <tr>
+            <td>Fastest Laps</td>
+            {% if driver1.fastest_laps > driver2.fastest_laps %}
+              <td style="background-color: green;">{{ driver1.fastest_laps }}</td>
+              <td>{{ driver2.fastest_laps }}</td>
+            {% elif driver2.fastest_laps > driver1.fastest_laps %}
+              <td>{{ driver1.fastest_laps }}</td>
+              <td style="background-color: green;">{{ driver2.fastest_laps }}</td>
+            {% else %}
+              <td>{{ driver1.fastest_laps }}</td>
+              <td>{{ driver2.fastest_laps }}</td>
+            {% endif %}
+          </tr>
+        </table>
+      {% elif driver1 is not none or driver2 is not none %}
+        <p class="error-message">One or both drivers were not found. Check spelling and try again.</p>
+      {% endif %}
+
+      <div class="cancel-button">
+        <!-- Updated cancel link to use the "root" route -->
+        <a href="{{ request.url_for('root') }}">
+          <button type="button">Cancel</button>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,247 @@
+/* Import the Oswald font if you used it on the login page */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+
+/* Basic Body Styling */
+body {
+    font-family: 'Oswald', sans-serif;
+    background-color: #222;
+    color: #eee;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-image: url('https://images.unsplash.com/photo-1541899497-a51334484424?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Replace with your awesome racing background image URL */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+header {
+    text-align: center;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #444;
+    margin-bottom: 30px;
+}
+
+.title {
+    color: #f44336; /* Racing red */
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+/* Example Navigation Bar Styling (Assuming it might be in base.html) */
+nav {
+    background-color: rgba(34, 34, 34, 0.9);
+    padding: 15px 0;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #eee;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.login-status {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+.login-status p {
+    margin: 10px 0;
+}
+
+.login-status a {
+    color: #00bcd4; /* Cyan for action links */
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: 1px solid #00bcd4;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-status a:hover {
+    background-color: #00bcd4;
+    color: #222;
+}
+
+.divider {
+    border: 1px solid #555;
+    margin: 40px 0;
+}
+
+.drivers-section,
+.teams-section {
+    margin-bottom: 40px;
+}
+
+.drivers-section h2,
+.teams-section h2 {
+    color: #00bcd4; /* Cyan for section titles */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-align: left; /* Align section titles to the left */
+}
+
+.drivers-section ul,
+.teams-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.drivers-section ul li,
+.teams-section ul li {
+    padding: 12px 0;
+    border-bottom: 1px solid #444;
+}
+
+.drivers-section ul li:last-child,
+.teams-section ul li:last-child {
+    border-bottom: none;
+}
+
+.drivers-section ul li a,
+.teams-section ul li a {
+    color: #eee;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-block;
+    width: 100%;
+}
+
+.drivers-section ul li a:hover,
+.teams-section ul li a:hover {
+    color: #f44336; /* Highlight on hover */
+}
+
+.drivers-section ul li .info,
+.teams-section ul li .info {
+    color: #999;
+    font-size: 0.9em;
+    margin-left: 15px;
+}
+
+/* Styles for the Add Driver Page */
+#add-driver-container {
+    max-width: 600px; /* Adjust width for the form */
+    margin: 50px auto; /* Center the form container */
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.8); /* Slightly darker background for the form */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+#add-driver-container h2 {
+    color: #00bcd4; /* Cyan for the form title */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    letter-spacing: 3px;
+}
+
+#add-driver-container label {
+    display: block;
+    color: #eee;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+#add-driver-container input[type="text"],
+#add-driver-container input[type="number"] {
+    width: calc(100% - 22px); /* Adjust for padding and border */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #333;
+    color: #eee;
+    font-size: 1em;
+}
+
+#add-driver-container input:focus {
+    outline: none;
+    border-color: #00bcd4; /* Highlight on focus */
+}
+
+#add-driver-container button[type="submit"] {
+    background-color: #f44336; /* Racing red for submit */
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#add-driver-container button[type="submit"]:hover {
+    background-color: #d32f2f;
+}
+
+#add-driver-container #cancel-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#add-driver-container #cancel-container button[type="button"] {
+    background-color: #6c757d; /* Gray for cancel */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#add-driver-container #cancel-container button[type="button"]:hover {
+    background-color: #5a6268;
+}
+
+#add-driver-container #error-message {
+    color: #ffc107 !important; /* Override inline style if present */
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#add-driver-container #edit-info {
+    color: #00bcd4;
+    text-align: center;
+    margin-bottom: 20px;
+    font-style: italic;
+}

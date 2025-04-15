@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Home Page - F1 Database</title>
+    <!-- Link to a CSS file (optional). Ensure index.css is in your static folder -->
+    <link rel="stylesheet" href="{{ request.url_for('static', path='index.css') }}">
+    <!-- Load firebase-login.js (do not modify this file) -->
+    <script type="module" src="{{ request.url_for('static', path='firebase-login.js') }}" defer></script>
+  </head>
+  <body>
+    <div id="home-container" class="container">
+      <!-- Header / Top Area -->
+      <header id="home-header">
+        <h1 class="title">Welcome to the F1 Database!</h1>
+        <!-- Login Box: shown only if show_login_box is True -->
+        <div id="login-box" {% if not show_login_box %}hidden{% endif %}>
+          <button id="login">Login</button>
+          <button id="sign-up">Sign Up</button>
+        </div>
+        <!-- Sign-out button: hidden when the login box is shown -->
+        <button id="sign-out" {% if show_login_box %}hidden{% endif %} class="signout">Sign Out</button>
+        <div id="error-message"></div>
+      </header>
+      
+      <!-- Navigation / Status Area -->
+      <div id="status-area" class="login-status">
+        {% if logged_in %}
+          <p>
+            <a href="{{ request.url_for('add_driver_get') }}">Add a Driver</a> |
+            <a href="{{ request.url_for('add_team_get') }}">Add a Team</a> |
+            <a href="{{ request.url_for('compare_drivers_get') }}">Compare Drivers</a> |
+            <a href="{{ request.url_for('compare_teams_get') }}">Compare Teams</a> |
+            <a href="{{ request.url_for('query_driver_get') }}">Query Drivers</a> |
+            <a href="{{ request.url_for('query_team_get') }}">Query Teams</a>
+          </p>
+        {% else %}
+          <p>You are logged out. You can still query drivers or teams, but cannot add/edit them.</p>
+        {% endif %}
+      </div>
+      
+      <hr class="divider">
+      
+      <!-- Drivers Section -->
+      <section id="drivers-section" class="drivers-section">
+        <h2>Current Drivers</h2>
+        <ul id="drivers-list">
+          {% for d in drivers %}
+            <li>
+              <a href="{{ request.url_for('driver_details', driver_id=d.id) }}">{{ d.name }}</a>
+              <span class="info">(Age: {{ d.age }})</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+      
+      <!-- Teams Section -->
+      <section id="teams-section" class="teams-section">
+        <h2>Current Teams</h2>
+        <ul id="teams-list">
+          {% for t in teams %}
+            <li>
+              <a href="{{ request.url_for('team_details', team_id=t.id) }}">{{ t.team_name }}</a>
+              <span class="info">(Founded: {{ t.year_founded }})</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>

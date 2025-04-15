@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Driver Details - F1 Database</title>
+    <link rel="stylesheet" href="{{ request.url_for('static', path='index.css') }}">
+    <script type="module" src="{{ request.url_for('static', path='firebase-login.js') }}" defer></script>
+  </head>
+  <body>
+    <div id="driver-details-container" class="container">
+      {% if driver %}
+        <h2 class="driver-name">{{ driver.name }}</h2>
+        <p class="driver-info">Age: <span class="value">{{ driver.age }}</span></p>
+        <p class="driver-info">Pole Positions: <span class="value">{{ driver.pole_positions }}</span></p>
+        <p class="driver-info">Race Wins: <span class="value">{{ driver.race_wins }}</span></p>
+        <p class="driver-info">Total Points: <span class="value">{{ driver.total_points }}</span></p>
+        <p class="driver-info">World Titles: <span class="value">{{ driver.world_titles }}</span></p>
+        <p class="driver-info">Fastest Laps: <span class="value">{{ driver.fastest_laps }}</span></p>
+        <p class="driver-info">Team: <span class="value">{{ driver.team }}</span></p>
+        
+          {% if logged_in %}
+            <div class="actions">
+              <a href="{{ request.url_for('edit_driver_get', driver_id=driver.id) }}" class="action-link">Edit</a> |
+              <a href="{{ request.url_for('delete_driver', driver_id=driver.id) }}" class="action-link">Delete</a>
+            </div>
+            <div id="cancel-container">
+              <a href="{{ request.url_for('root') }}">
+                <button type="button" class="cancel-btn">Cancel</button>
+              </a>
+            </div>
+          {% endif %}
+      {% else %}
+        <p class="error">No driver found.</p>
+      {% endif %}
+    </div>
+  </body>
+</html>

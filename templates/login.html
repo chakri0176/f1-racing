@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <!-- Load login-specific CSS from the static folder -->
+    <link rel="stylesheet" href="{{ request.url_for('static', path='login.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Load firebase-login.js as a module (do not modify this file) -->
+    <script type="module" src="{{ request.url_for('static', path='firebase-login.js') }}" defer></script>
+  </head>
+  <body>
+    <div class="login-container">
+      <h1>F1-Racing</h1>
+      <div id="login-box">
+        <input type="text" id="email" placeholder="Enter email">
+        <input type="password" id="password" placeholder="Enter password">
+        <button id="login">Login</button>
+        <button id="sign-up">Sign Up</button>
+      </div>
+      <!-- The sign-out button is hidden by default -->
+      <button id="sign-out" hidden>Sign Out</button>
+      <div id="error-message"></div>
+      <!-- Drop-down for query options -->
+      <div class="query-options">
+        <label for="query-option">Query Options:</label>
+        <select id="query-option" onchange="if(this.value){ window.location.href = this.value; }">
+          <option value="">--Select Query Option--</option>
+          <option value="{{ request.url_for('query_driver_get') }}">Query Drivers</option>
+          <option value="{{ request.url_for('query_team_get') }}">Query Teams</option>
+        </select>
+      </div>
+    </div>
+  </body>
+</html>

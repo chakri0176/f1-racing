@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My App{% endblock %}</title>
+    <!-- styling the webpage -->
+    <!-- Load firebase-login.js as a module -->
+    <script type="module" src="/static/firebase-login.js" defer></script>
+  </head>
+  <body class = "login-body-out">
+    <!-- Login box: shown only when show_login_box is True -->
+    <div class = "login-container">
+      <h1>login</h1>
+      <div id="login-box" {% if not show_login_box %}hidden{% endif %}>
+        <input type="text" id="email" placeholder="Enter email">
+        <input type="password" id="password" placeholder="Enter password">
+        <button id="login">Login</button>
+        <button id="sign-up">Sign Up</button>
+      </div>
+      <!-- Sign-out button: hidden when the login box is shown -->
+      <button id="sign-out" {% if show_login_box %}hidden{% endif %}>Sign Out</button>
+      <div id="error-message"></div>
+    </div>
+    <!-- Main content injected by child templates -->
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>

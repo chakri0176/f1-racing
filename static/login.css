@@ -1,0 +1,149 @@
+/* General Body Styling */
+body {
+  font-family: 'Oswald', sans-serif; /* A bold, racing-inspired font (ensure you include this in your <head> or via CDN) */
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/db-proj-1c9e2.appspot.com/o/f2.webp?alt=media&token=2701ad5b-3889-46fe-8858-b33b948248eb');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden; /* To prevent scrollbars if the image extends slightly */
+}
+
+/* Overlay for Background Image (Optional but Recommended for Text Contrast) */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for better text readability */
+  z-index: -1; /* Place behind the content */
+}
+
+/* Login Container Styling */
+.login-container {
+  background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white container */
+  padding: 60px;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.3); /* White border */
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7); /* Stronger shadow for depth */
+  text-align: center;
+  color: #fff; /* White text */
+  width: 450px; /* Adjust width as needed */
+  backdrop-filter: blur(10px); /* Adds a frosted glass effect */
+}
+
+/* Login Heading Styling */
+.login-container h1 {
+  margin-bottom: 50px;
+  color: #ffeb3b; /* Bright, energetic color */
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 3em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Text shadow for emphasis */
+}
+
+/* Login Box Styling */
+#login-box {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+/* Input Field Styling */
+#login-box input[type="text"],
+#login-box input[type="password"] {
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark, slightly transparent input */
+  color: #fff;
+  font-size: 18px;
+  transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+#login-box input::placeholder {
+  color: #aaa;
+}
+
+#login-box input:focus {
+  background-color: rgba(0, 0, 0, 0.9);
+  outline: none;
+  border: 2px solid #ffeb3b; /* Highlight border on focus */
+}
+
+/* Button Styling */
+#login-box button,
+#sign-out {
+  padding: 20px 35px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Login Button Specific Styling */
+#login-box #login {
+  background-color: #ffeb3b; /* Bright, energetic color */
+  color: #222;
+  font-weight: bold;
+}
+
+#login-box #login:hover {
+  background-color: #f0d43a;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Sign Up Button Specific Styling */
+#login-box #sign-up {
+  background-color: transparent;
+  color: #ffeb3b;
+  border: 2px solid #ffeb3b;
+}
+
+#login-box #sign-up:hover {
+  background-color: #ffeb3b;
+  color: #222;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Sign Out Button Styling */
+#sign-out {
+  background-color: rgba(108, 117, 125, 0.8); /* Darker gray */
+  color: #fff;
+  margin-top: 25px;
+}
+
+#sign-out:hover {
+  background-color: #5a6268;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Error Message Styling */
+#error-message {
+  color: #f44336; /* Red for error */
+  margin-top: 30px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.query-options {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#query-option {
+  padding: 8px;
+  font-size: 1rem;
+}

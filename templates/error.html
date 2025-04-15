@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Error - F1 Database</title>
+    <link rel="stylesheet" href="{{ request.url_for('static', path='index.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Error</h1>
+      <p>{{error}}</p>
+      <a href="{{ request.url_for('root') }}">Back to Home</a>
+    </div>
+  </body>
+</html>
