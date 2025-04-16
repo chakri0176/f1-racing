@@ -4,13 +4,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebas
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyD36r5gjc1mDfkEOhgORJ85LQWQtZTQ7H8",
-    authDomain: "formula-racing-453707.firebaseapp.com",
-    projectId: "formula-racing-453707",
-    storageBucket: "formula-racing-453707.firebasestorage.app",
-    messagingSenderId: "423193981975",
-    appId: "1:423193981975:web:33ac76c161031641365852",
-    measurementId: "G-D4G6KMC86Z"
+    
 };
 
 window.addEventListener("load", function () {
